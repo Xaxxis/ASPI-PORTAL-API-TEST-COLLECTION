@@ -1,0 +1,4900 @@
+{
+	"info": {
+		"_postman_id": "8f38e8f3-ae70-4668-b93b-93b5ec51533f",
+		"name": "ASPI PORTAL APP TESTING",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gopay Tokenization",
+			"item": [
+				{
+					"name": "Get Auth Code Test",
+					"item": [
+						{
+							"name": "1. /utilities/signature-auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b968b79-c50e-49cd-bae5-f57d250c98b7",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForB2bKeyGenerate\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "6b2201cf-7fac-4b68-a386-6c53db17d1e7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "Private_Key",
+										"value": "{{private_key}}"
+									}
+								],
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+							},
+							"response": [
+								{
+									"id": "a96e45fb-4c82-466f-b438-65bbe920c985",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "Private_Key",
+												"value": "{{private_key}}"
+											}
+										],
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "360"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:01:35 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"eyE1XcMPjmYoJpUm4q5NEhgcUiNyfEuuq5NLYCgFziahXH/zRSxiXmGnVZCljx4sg1pNgvypL0Xze0C43K6Lrj+Xhuvc51W5LFqDAczZES2CbuXaVbHl7FjRYI3OV4MSxxARUzvb+B9tWTZ51XRpO08OeU3R5lqy6j9WcQOfAnVxWTg6fo6fyKkKGFQDPIfSwZYXCvqbwIugVCr4LuhRM3igEotXzqnnx0Msnfb1EGUl9FP3bT1rhbctEHBR4E9HcLbIjFw8TbgmKkyPBXQzmpAljlQoWpKQZ+hFQI/a4Qa7jcTEkr0gvTKfcg10ZjfVh4jvbdZ12oQHU9fXlQBy2A==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "2. /access-token/b2b",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17af3d44-8fa8-49a6-9153-540b2b9ad18b",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"accessTokenB2b\", jsonData.accessToken);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "86426961-b25c-46b3-b4a0-bc32a367927a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForB2bKeyGenerate}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+							},
+							"response": [
+								{
+									"id": "a62bfff5-3dda-4538-bfd2-cd43e1bd3abc",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForB2bKeyGenerate}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:02:18+07:00"
+										},
+										{
+											"key": "X-CLIENT-KEY",
+											"value": "9a9b10eb7a8346d0916ccb63b7f98798"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:02:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "405"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2007300\",\n    \"responseMessage\": \"Successful\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkODNlODJiNS1lNjg4LTRlMDktYTJiYy0wNjZlMjVhZjQ0MmYiLCJjbGllbnRJZCI6IjlhOWIxMGViN2E4MzQ2ZDA5MTZjY2I2M2I3Zjk4Nzk4IiwibmJmIjoxNzE2MTkyMTM4LCJleHAiOjE3MTYxOTMwMzgsImlhdCI6MTcxNjE5MjEzOH0.PfXkbugRTYNRqPk8995bvOIZsDEa6FaI14isQl1fWmQ\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": \"900\",\n    \"additionalInfo\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "3. /utilities/signature-service",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4371ac8f-2800-49ed-9b25-3ac5c806bc10",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForGetAuthCode\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "0ac646fa-3980-42af-a82d-001ea39d1222",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-SECRET",
+										"value": "{{client_secret}}"
+									},
+									{
+										"key": "HttpMethod",
+										"value": "GET"
+									},
+									{
+										"key": "EndpoinUrl",
+										"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+									},
+									{
+										"key": "AccessToken",
+										"value": "{{accessTokenB2b}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+							},
+							"response": [
+								{
+									"id": "fa0dc43b-9d8b-408d-8309-a46f00bb1338",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-SECRET",
+												"value": "{{client_secret}}"
+											},
+											{
+												"key": "HttpMethod",
+												"value": "GET"
+											},
+											{
+												"key": "EndpoinUrl",
+												"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+											},
+											{
+												"key": "AccessToken",
+												"value": "{{accessTokenB2b}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:03:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "104"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"6icbF32nGw1VD9aO+VAjfSE9czglE7Z6Z9UId4lgHgjjab6+y+6tey+XmNC1zcrociJykcWad/stwNHJUGQlfg==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "4. /get-auth-code",
+							"id": "06d2a44b-0603-4cd7-9551-d96df7e67345",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessTokenB2b}}"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForGetAuthCode}}"
+									},
+									{
+										"key": "X-PARTNER-ID",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-EXTERNAL-ID",
+										"value": "41807553358950093184162180797837"
+									},
+									{
+										"key": "CHANNEL-ID",
+										"value": "95221"
+									}
+								],
+								"url": {
+									"raw": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs",
+									"protocol": "https",
+									"host": [
+										"apidevportal",
+										"aspi-indonesia",
+										"or",
+										"id"
+									],
+									"port": "44310",
+									"path": [
+										"api",
+										"v1.0",
+										"get-auth-code"
+									],
+									"query": [
+										{
+											"key": "redirectUrl",
+											"value": "https%3A%2F%2Fdomain.com%2FauthSuccess.json"
+										},
+										{
+											"key": "scopes",
+											"value": "QUERY_BALANCE%2CQUERY_PROFILE"
+										},
+										{
+											"key": "state",
+											"value": "WOdkkwijSDs"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "9ac60046-e264-49dd-bbc4-d496dbfba368",
+									"name": "example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessTokenB2b}}"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForGetAuthCode}}"
+											},
+											{
+												"key": "X-PARTNER-ID",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-EXTERNAL-ID",
+												"value": "41807553358950093184162180797837"
+											},
+											{
+												"key": "CHANNEL-ID",
+												"value": "95221"
+											}
+										],
+										"url": {
+											"raw": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs",
+											"protocol": "https",
+											"host": [
+												"apidevportal",
+												"aspi-indonesia",
+												"or",
+												"id"
+											],
+											"port": "44310",
+											"path": [
+												"api",
+												"v1.0",
+												"get-auth-code"
+											],
+											"query": [
+												{
+													"key": "redirectUrl",
+													"value": "https%3A%2F%2Fdomain.com%2FauthSuccess.json"
+												},
+												{
+													"key": "scopes",
+													"value": "QUERY_BALANCE%2CQUERY_PROFILE"
+												},
+												{
+													"key": "state",
+													"value": "WOdkkwijSDs"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "146"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:04:08+07:00"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:04:08 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2001000\",\n    \"responseMessage\": \"Successful\",\n    \"authCode\": \"3decb02ab159414ea173d8f16f4c35d9\",\n    \"state\": \"d3fdf319aae24025a9ce2bb57411afc6\"\n}"
+								}
+							]
+						}
+					],
+					"id": "ca13ff8e-8217-43ce-9ed9-33c3f098382e",
+					"description": "ASPI Link Menu\n\n1. [/utilities/signature-auth](https://apidevportal.aspi-indonesia.or.id/api-services/keamanan#/Keamanan/post_api_v1_0_utilities_signature_auth)\n2. [/access-token/b2b](https://apidevportal.aspi-indonesia.or.id/api-services/keamanan#/Keamanan/post_api_v1_0_access_token_b2b)\n3. [/utilities/signature-service](https://apidevportal.aspi-indonesia.or.id/api-services/keamanan#/Keamanan/post_api_v1_0_utilities_signature_service)\n4. [/get-auth-code](https://apidevportal.aspi-indonesia.or.id/api-services/registrasi#/Registrasi/get_api_v1_0_get_auth_code)"
+				},
+				{
+					"name": "Registration Account Binding Test",
+					"item": [
+						{
+							"name": "1. /utilities/signature-auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b968b79-c50e-49cd-bae5-f57d250c98b7",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForB2bKeyGenerate\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "fe0cd575-c0ce-45dc-b9d0-ff9a4add2b16",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "Private_Key",
+										"value": "{{private_key}}"
+									}
+								],
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+							},
+							"response": [
+								{
+									"id": "b4b01a61-7b32-4220-bf54-ac8cd223c4f6",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "Private_Key",
+												"value": "{{private_key}}"
+											}
+										],
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "360"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:01:35 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"eyE1XcMPjmYoJpUm4q5NEhgcUiNyfEuuq5NLYCgFziahXH/zRSxiXmGnVZCljx4sg1pNgvypL0Xze0C43K6Lrj+Xhuvc51W5LFqDAczZES2CbuXaVbHl7FjRYI3OV4MSxxARUzvb+B9tWTZ51XRpO08OeU3R5lqy6j9WcQOfAnVxWTg6fo6fyKkKGFQDPIfSwZYXCvqbwIugVCr4LuhRM3igEotXzqnnx0Msnfb1EGUl9FP3bT1rhbctEHBR4E9HcLbIjFw8TbgmKkyPBXQzmpAljlQoWpKQZ+hFQI/a4Qa7jcTEkr0gvTKfcg10ZjfVh4jvbdZ12oQHU9fXlQBy2A==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "2. /access-token/b2b",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17af3d44-8fa8-49a6-9153-540b2b9ad18b",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"accessTokenB2b\", jsonData.accessToken);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "cc1c5b88-6d73-44d9-81ff-a107ec717bff",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForB2bKeyGenerate}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+							},
+							"response": [
+								{
+									"id": "1a3104b5-1ead-42b1-8f2c-b193daff8a36",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForB2bKeyGenerate}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:02:18+07:00"
+										},
+										{
+											"key": "X-CLIENT-KEY",
+											"value": "9a9b10eb7a8346d0916ccb63b7f98798"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:02:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "405"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2007300\",\n    \"responseMessage\": \"Successful\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkODNlODJiNS1lNjg4LTRlMDktYTJiYy0wNjZlMjVhZjQ0MmYiLCJjbGllbnRJZCI6IjlhOWIxMGViN2E4MzQ2ZDA5MTZjY2I2M2I3Zjk4Nzk4IiwibmJmIjoxNzE2MTkyMTM4LCJleHAiOjE3MTYxOTMwMzgsImlhdCI6MTcxNjE5MjEzOH0.PfXkbugRTYNRqPk8995bvOIZsDEa6FaI14isQl1fWmQ\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": \"900\",\n    \"additionalInfo\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "3. /utilities/signature-service",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4371ac8f-2800-49ed-9b25-3ac5c806bc10",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForegistration-account-creation\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "119f036a-5927-4650-aff4-e2b8cbfcd7fe",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-SECRET",
+										"value": "{{client_secret}}"
+									},
+									{
+										"key": "HttpMethod",
+										"value": "POST"
+									},
+									{
+										"key": "EndpoinUrl",
+										"value": "/api/v1.0/registration-account-binding"
+									},
+									{
+										"key": "AccessToken",
+										"value": "{{accessTokenB2b}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"partnerReferenceNo\": \"2020102900000000000001\",\n    \"action\": \"otpLinkage\",\n    \"additionalData\": {\n        \"userId\": \"John Doe\",\n        \"email\": \"john.doe@email.com\",\n        \"postalAddress\": \"134346\"\n    },\n    \"authCode\": \"4b203fe6c11548bcabd8da5bb087a83b\",\n    \"grantType\": \"AUTHORIZATION_CODE\",\n    \"isBindAndPay\": \"N\",\n    \"lang\": \"EN\",\n    \"locale\": \"en_ID\",\n    \"merchantId\": \"00007100010926\",\n    \"subMerchantId\": \"310928924949487\",\n    \"msisdn\": \"+62812345678901\",\n    \"otp\": \"34564367\",\n    \"phoneNo\": \"0899345678864332\",\n    \"platformType\": \"app\",\n    \"redirectUrl\": \"merchantapp://main_page\",\n    \"referenceId\": \"08400000814-08400000814\",\n    \"refreshToken\": \"201208134b203fe6c11548bcabd8da5bb087a83b \",\n    \"successParams\": {\n        \"accountId\": \"ABCD1234-EF56-GH78-IJ90-KLMNOP123456\"\n    },\n    \"terminalId\": \"ID\",\n    \"tokenRequestorId\": \"e-commerceA\",\n    \"additionalInfo\": {\n        \"deviceId\": \"12345679237\",\n        \"channel\": \"mobilephone\"\n    }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+							},
+							"response": [
+								{
+									"id": "0218f27d-9d66-4db0-beae-e4d1f07a3a2e",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-SECRET",
+												"value": "{{client_secret}}"
+											},
+											{
+												"key": "HttpMethod",
+												"value": "GET"
+											},
+											{
+												"key": "EndpoinUrl",
+												"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+											},
+											{
+												"key": "AccessToken",
+												"value": "{{accessTokenB2b}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:03:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "104"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"6icbF32nGw1VD9aO+VAjfSE9czglE7Z6Z9UId4lgHgjjab6+y+6tey+XmNC1zcrociJykcWad/stwNHJUGQlfg==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "4. /registration-account-binding",
+							"id": "f7066a7c-ed21-4b56-8912-2f9ee4044a30",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessTokenB2b}}"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForegistration-account-creation}}"
+									},
+									{
+										"key": "X-PARTNER-ID",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-EXTERNAL-ID",
+										"value": "41807553358950093184162180797837"
+									},
+									{
+										"key": "CHANNEL-ID",
+										"value": "95221"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"partnerReferenceNo\":\"2020102900000000000001\", \"action\":\"otpLinkage\", \"additionalData\":{ \"userId\":\"John Doe\", \"email\":\"john.doe@email.com\", \"postalAddress\":\"134346\" }, \"authCode\":\"4b203fe6c11548bcabd8da5bb087a83b\", \"grantType\":\"AUTHORIZATION_CODE\", \"isBindAndPay\":\"N\", \"lang\":\"EN\", \"locale\":\"en_ID\", \"merchantId\":\"00007100010926\", \"subMerchantId\":\"310928924949487\", \"msisdn\":\"+62812345678901\", \"otp\":\"34564367\", \"phoneNo\":\"0899345678864332\", \"platformType\":\"app\", \"redirectUrl\":\"merchantapp://main_page\", \"referenceId\":\"08400000814-08400000814\", \"refreshToken\":\"201208134b203fe6c11548bcabd8da5bb087a83b \", \"successParams\":{ \"accountId\":\"ABCD1234-EF56-GH78-IJ90-KLMNOP123456\" }, \"terminalId\":\"ID\", \"tokenRequestorId\":\"e-commerceA\", \"additionalInfo\":{ \"deviceId\":\"12345679237\", \"channel\":\"mobilephone\" }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/registration-account-binding"
+							},
+							"response": [
+								{
+									"id": "0195c4de-9f3d-4c2c-a217-caedc78ebbb4",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessTokenB2b}}"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForegistration-account-creation}}"
+											},
+											{
+												"key": "X-PARTNER-ID",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-EXTERNAL-ID",
+												"value": "41807553358950093184162180797837"
+											},
+											{
+												"key": "CHANNEL-ID",
+												"value": "95221"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"partnerReferenceNo\": \"2020102900000000000001\",\n    \"action\": \"otpLinkage\",\n    \"additionalData\": {\n        \"userId\": \"John Doe\",\n        \"email\": \"john.doe@email.com\",\n        \"postalAddress\": \"134346\"\n    },\n    \"authCode\": \"4b203fe6c11548bcabd8da5bb087a83b\",\n    \"grantType\": \"AUTHORIZATION_CODE\",\n    \"isBindAndPay\": \"N\",\n    \"lang\": \"EN\",\n    \"locale\": \"en_ID\",\n    \"merchantId\": \"00007100010926\",\n    \"subMerchantId\": \"310928924949487\",\n    \"msisdn\": \"+62812345678901\",\n    \"otp\": \"34564367\",\n    \"phoneNo\": \"0899345678864332\",\n    \"platformType\": \"app\",\n    \"redirectUrl\": \"merchantapp://main_page\",\n    \"referenceId\": \"08400000814-08400000814\",\n    \"refreshToken\": \"201208134b203fe6c11548bcabd8da5bb087a83b \",\n    \"successParams\": {\n        \"accountId\": \"ABCD1234-EF56-GH78-IJ90-KLMNOP123456\"\n    },\n    \"terminalId\": \"ID\",\n    \"tokenRequestorId\": \"e-commerceA\",\n    \"additionalInfo\": {\n        \"deviceId\": \"12345679237\",\n        \"channel\": \"mobilephone\"\n    }\n}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/registration-account-binding"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-21T09:22:09+07:00"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 21 May 2024 02:22:09 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1102"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2000700\",\n    \"responseMessage\": \"Successful\",\n    \"referenceNo\": \"2b1751d36eee4b87bd04ffdfffe7f518\",\n    \"partnerReferenceNo\": \"2020102900000000000001\",\n    \"accountToken\": \"cce16634c9be4b20aad104f8c799a201\",\n    \"accessTokenInfo\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjNWVjOTc5NC0zNzRjLTRhNzMtYjU4ZC05M2YxM2Y0MTBkYWMiLCJjbGllbnRJZCI6Ijk2MjQ4OWU5LWRlNWQtNGViNy05MmE0LWIwN2Q0NGQ2NGJmNCIsIm5iZiI6MTYxODA2MDc0MiwiZXhwIjoxNjE4MDYxNjQyLCJpYXQiOjE2MTgwNjA3NDJ9.cY2OUEig9vRUcEPe8jgYTUcABgYThCA9m0iIM26TMrs\",\n        \"expiresIn\": \"2024-06-21T09:22:09+07:00\",\n        \"refreshToken\": \"7b09b3f819b7438694d918dc9f4bcb90\",\n        \"reExpiresIn\": \"2024-06-21T09:22:09+07:00\",\n        \"tokenStatus\": \"ACTIVE\"\n    },\n    \"linkId\": \"050c682b28a644d5\",\n    \"nextAction\": \"https://gopayapi.com/validate/otp/abcd123456789\",\n    \"linkageToken\": \"ad6e87bd907741a9\",\n    \"params\": {\n        \"action\": \"otpLinkage\",\n        \"pinWebViewUrl\": \"https://setPin\",\n        \"redirectToDeeplink\": \"https://gopayapi.com/redirect/gopay/abcd123456789\"\n    },\n    \"redirectUrl\": \"https://redirectUrl\",\n    \"userInfo\": {\n        \"publicUserId\": \"dfd82531d8c34471a4f0fbcaa0a6b9c2\"\n    },\n    \"additionalInfo\": {\n        \"deviceId\": \"12345679237\",\n        \"channel\": \"mobilephone\"\n    }\n}"
+								}
+							]
+						}
+					],
+					"id": "2e7de014-8516-46b5-916e-77edf1b8f0a9"
+				},
+				{
+					"name": "Registration Account Inquiry Test",
+					"item": [
+						{
+							"name": "1. /utilities/signature-auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b968b79-c50e-49cd-bae5-f57d250c98b7",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForB2bKeyGenerate\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "a2cee1c9-c6af-475e-8f7d-f51ce8be2886",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "Private_Key",
+										"value": "{{private_key}}"
+									}
+								],
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+							},
+							"response": [
+								{
+									"id": "f95a4c96-5ab4-4287-a848-e23651d3ec95",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "Private_Key",
+												"value": "{{private_key}}"
+											}
+										],
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "360"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:01:35 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"eyE1XcMPjmYoJpUm4q5NEhgcUiNyfEuuq5NLYCgFziahXH/zRSxiXmGnVZCljx4sg1pNgvypL0Xze0C43K6Lrj+Xhuvc51W5LFqDAczZES2CbuXaVbHl7FjRYI3OV4MSxxARUzvb+B9tWTZ51XRpO08OeU3R5lqy6j9WcQOfAnVxWTg6fo6fyKkKGFQDPIfSwZYXCvqbwIugVCr4LuhRM3igEotXzqnnx0Msnfb1EGUl9FP3bT1rhbctEHBR4E9HcLbIjFw8TbgmKkyPBXQzmpAljlQoWpKQZ+hFQI/a4Qa7jcTEkr0gvTKfcg10ZjfVh4jvbdZ12oQHU9fXlQBy2A==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "2. /access-token/b2b",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17af3d44-8fa8-49a6-9153-540b2b9ad18b",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"accessTokenB2b\", jsonData.accessToken);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "c7515d5f-fc85-461f-a9a1-7e34a2c357ee",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForB2bKeyGenerate}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+							},
+							"response": [
+								{
+									"id": "6d9d8215-fca5-4715-ad2a-d4fff614bdd9",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForB2bKeyGenerate}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:02:18+07:00"
+										},
+										{
+											"key": "X-CLIENT-KEY",
+											"value": "9a9b10eb7a8346d0916ccb63b7f98798"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:02:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "405"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2007300\",\n    \"responseMessage\": \"Successful\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkODNlODJiNS1lNjg4LTRlMDktYTJiYy0wNjZlMjVhZjQ0MmYiLCJjbGllbnRJZCI6IjlhOWIxMGViN2E4MzQ2ZDA5MTZjY2I2M2I3Zjk4Nzk4IiwibmJmIjoxNzE2MTkyMTM4LCJleHAiOjE3MTYxOTMwMzgsImlhdCI6MTcxNjE5MjEzOH0.PfXkbugRTYNRqPk8995bvOIZsDEa6FaI14isQl1fWmQ\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": \"900\",\n    \"additionalInfo\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "3. /utilities/signature-service",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4371ac8f-2800-49ed-9b25-3ac5c806bc10",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForRegistrationAccountInquiry\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "84c0e133-dd34-42f7-ad58-62095ef46508",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-SECRET",
+										"value": "{{client_secret}}"
+									},
+									{
+										"key": "HttpMethod",
+										"value": "POST"
+									},
+									{
+										"key": "EndpoinUrl",
+										"value": "/api/v1.0/registration-account-inquiry"
+									},
+									{
+										"key": "AccessToken",
+										"value": "{{accessTokenB2b}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"partnerReferenceNo\":\"2020102900000000000001\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+							},
+							"response": [
+								{
+									"id": "c577be23-7bb4-433d-b627-587154a351f2",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-SECRET",
+												"value": "{{client_secret}}"
+											},
+											{
+												"key": "HttpMethod",
+												"value": "GET"
+											},
+											{
+												"key": "EndpoinUrl",
+												"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+											},
+											{
+												"key": "AccessToken",
+												"value": "{{accessTokenB2b}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:03:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "104"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"6icbF32nGw1VD9aO+VAjfSE9czglE7Z6Z9UId4lgHgjjab6+y+6tey+XmNC1zcrociJykcWad/stwNHJUGQlfg==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "4. /registration-account-inquiry",
+							"id": "a9393064-770f-4159-9c57-7fa147df422a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessTokenB2b}}"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForRegistrationAccountInquiry}}"
+									},
+									{
+										"key": "X-PARTNER-ID",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-EXTERNAL-ID",
+										"value": "41807553358950093184162180797837"
+									},
+									{
+										"key": "CHANNEL-ID",
+										"value": "95221"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"partnerReferenceNo\":\"2020102900000000000001\", \"additionalInfo\":{ \"deviceId\":\"12345679237\", \"channel\":\"mobilephone\" }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/registration-account-inquiry"
+							},
+							"response": [
+								{
+									"id": "9369fb2f-50d4-4164-a2bf-7c003e0b6d58",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessTokenB2b}}"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForRegistrationAccountInquiry}}"
+											},
+											{
+												"key": "X-PARTNER-ID",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-EXTERNAL-ID",
+												"value": "41807553358950093184162180797837"
+											},
+											{
+												"key": "CHANNEL-ID",
+												"value": "95221"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"partnerReferenceNo\":\"2020102900000000000001\", \"additionalInfo\":{ \"deviceId\":\"12345679237\", \"channel\":\"mobilephone\" }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/registration-account-inquiry"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "418"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-21T10:00:36+07:00"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 21 May 2024 03:00:36 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2000800\",\n    \"responseMessage\": \"Successful\",\n    \"referenceNo\": \"5c6faa9f5d82422b96b404d03b77ddb9\",\n    \"partnerReferenceNo\": \"2020102900000000000001\",\n    \"accountCurrency\": \"IDR\",\n    \"accountName\": \"Alen Miucic\",\n    \"accountNo\": \"550a3aad2a0d4d71a246c43a3e9b1a74\",\n    \"accountTransactionLimit\": \"1000000.00\",\n    \"endDatePeriod\": \"2022-05-21\",\n    \"startDatePeriod\": \"2020-05-21\",\n    \"additionalInfo\": {\n        \"deviceId\": \"12345679237\",\n        \"channel\": \"mobilephone\"\n    }\n}"
+								}
+							]
+						}
+					],
+					"id": "02b0b94b-0c28-4478-867c-ad99671eb0c6"
+				},
+				{
+					"name": "Registration Account Unbinding Test",
+					"item": [
+						{
+							"name": "1. /utilities/signature-auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b968b79-c50e-49cd-bae5-f57d250c98b7",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForB2bKeyGenerate\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "63a10fd8-7a85-44fb-9ff3-fd6f129d2943",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "Private_Key",
+										"value": "{{private_key}}"
+									}
+								],
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+							},
+							"response": [
+								{
+									"id": "02a2d96a-361d-4ff7-8985-a36302dd07c7",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "Private_Key",
+												"value": "{{private_key}}"
+											}
+										],
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "360"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:01:35 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"eyE1XcMPjmYoJpUm4q5NEhgcUiNyfEuuq5NLYCgFziahXH/zRSxiXmGnVZCljx4sg1pNgvypL0Xze0C43K6Lrj+Xhuvc51W5LFqDAczZES2CbuXaVbHl7FjRYI3OV4MSxxARUzvb+B9tWTZ51XRpO08OeU3R5lqy6j9WcQOfAnVxWTg6fo6fyKkKGFQDPIfSwZYXCvqbwIugVCr4LuhRM3igEotXzqnnx0Msnfb1EGUl9FP3bT1rhbctEHBR4E9HcLbIjFw8TbgmKkyPBXQzmpAljlQoWpKQZ+hFQI/a4Qa7jcTEkr0gvTKfcg10ZjfVh4jvbdZ12oQHU9fXlQBy2A==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "2. /access-token/b2b",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17af3d44-8fa8-49a6-9153-540b2b9ad18b",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"accessTokenB2b\", jsonData.accessToken);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "2932490b-f0b3-4c3f-842d-31bb6e2ab861",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForB2bKeyGenerate}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+							},
+							"response": [
+								{
+									"id": "1395adfc-889a-4315-a381-d059fbd338f8",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForB2bKeyGenerate}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:02:18+07:00"
+										},
+										{
+											"key": "X-CLIENT-KEY",
+											"value": "9a9b10eb7a8346d0916ccb63b7f98798"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:02:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "405"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2007300\",\n    \"responseMessage\": \"Successful\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkODNlODJiNS1lNjg4LTRlMDktYTJiYy0wNjZlMjVhZjQ0MmYiLCJjbGllbnRJZCI6IjlhOWIxMGViN2E4MzQ2ZDA5MTZjY2I2M2I3Zjk4Nzk4IiwibmJmIjoxNzE2MTkyMTM4LCJleHAiOjE3MTYxOTMwMzgsImlhdCI6MTcxNjE5MjEzOH0.PfXkbugRTYNRqPk8995bvOIZsDEa6FaI14isQl1fWmQ\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": \"900\",\n    \"additionalInfo\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "3. /utilities/signature-service",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4371ac8f-2800-49ed-9b25-3ac5c806bc10",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForRegistration-account-unbinding\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "b09186d5-9d0c-44c9-be97-ce02bdae413b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-SECRET",
+										"value": "{{client_secret}}"
+									},
+									{
+										"key": "HttpMethod",
+										"value": "POST"
+									},
+									{
+										"key": "EndpoinUrl",
+										"value": "/api/v1.0/registration-account-unbinding"
+									},
+									{
+										"key": "AccessToken",
+										"value": "{{accessTokenB2b}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"partnerReferenceNo\":\"2020102900000000000001\",\n   \"linkId\":\"abcd1234efgh5678ijkl9012\",\n   \"merchantId\":\"00007100010926\",\n   \"subMerchantId\":\"310928924949487\",\n   \"tokenId\":\"Aeox320xvijwefop10\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+							},
+							"response": [
+								{
+									"id": "bf84a3af-1abd-4b8f-b976-f2dc3ffd4327",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-SECRET",
+												"value": "{{client_secret}}"
+											},
+											{
+												"key": "HttpMethod",
+												"value": "GET"
+											},
+											{
+												"key": "EndpoinUrl",
+												"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+											},
+											{
+												"key": "AccessToken",
+												"value": "{{accessTokenB2b}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:03:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "104"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"6icbF32nGw1VD9aO+VAjfSE9czglE7Z6Z9UId4lgHgjjab6+y+6tey+XmNC1zcrociJykcWad/stwNHJUGQlfg==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "4. /registration-account-unbinding",
+							"id": "413f6310-c965-411b-941e-db8b6808cd2b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessTokenB2b}}"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForRegistration-account-unbinding}}"
+									},
+									{
+										"key": "X-PARTNER-ID",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-EXTERNAL-ID",
+										"value": "41807553358950093184162180797837"
+									},
+									{
+										"key": "CHANNEL-ID",
+										"value": "95221"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"partnerReferenceNo\":\"2020102900000000000001\",\n   \"linkId\":\"abcd1234efgh5678ijkl9012\",\n   \"merchantId\":\"00007100010926\",\n   \"subMerchantId\":\"310928924949487\",\n   \"tokenId\":\"Aeox320xvijwefop10\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/registration-account-unbinding"
+							},
+							"response": [
+								{
+									"id": "47340fd9-1a25-46e4-83e0-fc1be799d9b0",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessTokenB2b}}"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForRegistration-account-unbinding}}"
+											},
+											{
+												"key": "X-PARTNER-ID",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-EXTERNAL-ID",
+												"value": "41807553358950093184162180797837"
+											},
+											{
+												"key": "CHANNEL-ID",
+												"value": "95221"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n   \"partnerReferenceNo\":\"2020102900000000000001\",\n   \"linkId\":\"abcd1234efgh5678ijkl9012\",\n   \"merchantId\":\"00007100010926\",\n   \"subMerchantId\":\"310928924949487\",\n   \"tokenId\":\"Aeox320xvijwefop10\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/registration-account-unbinding"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-21T09:30:59+07:00"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 21 May 2024 02:30:58 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "345"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2000900\",\n    \"responseMessage\": \"Successful\",\n    \"referenceNo\": \"358b88e02fcf44328499419425659724\",\n    \"partnerReferenceNo\": \"2020102900000000000001\",\n    \"merchantId\": \"00007100010926\",\n    \"subMerchantId\": \"310928924949487\",\n    \"linkId\": \"abcd1234efgh5678ijkl9012\",\n    \"unlinkResult\": \"success\",\n    \"additionalInfo\": {\n        \"deviceId\": \"12345679237\",\n        \"channel\": \"mobilephone\"\n    }\n}"
+								}
+							]
+						}
+					],
+					"id": "537caece-27a1-4847-b06a-38beef228d00"
+				},
+				{
+					"name": "Payment Host to Host Test",
+					"item": [
+						{
+							"name": "1. /utilities/signature-auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b968b79-c50e-49cd-bae5-f57d250c98b7",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForB2bKeyGenerate\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "3e8e9a7b-a124-45d7-9274-2e3e7d9651bd",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "Private_Key",
+										"value": "{{private_key}}"
+									}
+								],
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+							},
+							"response": [
+								{
+									"id": "19458409-fca6-406f-a9c0-f88b05945d5b",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "Private_Key",
+												"value": "{{private_key}}"
+											}
+										],
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "360"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:01:35 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"eyE1XcMPjmYoJpUm4q5NEhgcUiNyfEuuq5NLYCgFziahXH/zRSxiXmGnVZCljx4sg1pNgvypL0Xze0C43K6Lrj+Xhuvc51W5LFqDAczZES2CbuXaVbHl7FjRYI3OV4MSxxARUzvb+B9tWTZ51XRpO08OeU3R5lqy6j9WcQOfAnVxWTg6fo6fyKkKGFQDPIfSwZYXCvqbwIugVCr4LuhRM3igEotXzqnnx0Msnfb1EGUl9FP3bT1rhbctEHBR4E9HcLbIjFw8TbgmKkyPBXQzmpAljlQoWpKQZ+hFQI/a4Qa7jcTEkr0gvTKfcg10ZjfVh4jvbdZ12oQHU9fXlQBy2A==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "2. /access-token/b2b",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17af3d44-8fa8-49a6-9153-540b2b9ad18b",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"accessTokenB2b\", jsonData.accessToken);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "234c2b0d-ea42-4686-8591-a531378169a0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForB2bKeyGenerate}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+							},
+							"response": [
+								{
+									"id": "08dbcbf5-c100-4ec7-bf55-84e33af15487",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForB2bKeyGenerate}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:02:18+07:00"
+										},
+										{
+											"key": "X-CLIENT-KEY",
+											"value": "9a9b10eb7a8346d0916ccb63b7f98798"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:02:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "405"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2007300\",\n    \"responseMessage\": \"Successful\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkODNlODJiNS1lNjg4LTRlMDktYTJiYy0wNjZlMjVhZjQ0MmYiLCJjbGllbnRJZCI6IjlhOWIxMGViN2E4MzQ2ZDA5MTZjY2I2M2I3Zjk4Nzk4IiwibmJmIjoxNzE2MTkyMTM4LCJleHAiOjE3MTYxOTMwMzgsImlhdCI6MTcxNjE5MjEzOH0.PfXkbugRTYNRqPk8995bvOIZsDEa6FaI14isQl1fWmQ\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": \"900\",\n    \"additionalInfo\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "3. /utilities/signature-service",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4371ac8f-2800-49ed-9b25-3ac5c806bc10",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForPaymentHostToHost\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "6edcb648-477a-434d-b335-6a89b6a7d6b4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-SECRET",
+										"value": "{{client_secret}}"
+									},
+									{
+										"key": "HttpMethod",
+										"value": "POST"
+									},
+									{
+										"key": "EndpoinUrl",
+										"value": "/api/v1.0/debit/payment-host-to-host"
+									},
+									{
+										"key": "AccessToken",
+										"value": "{{accessTokenB2b}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"partnerReferenceNo\":\"2020102900000000000001\",\n   \"bankCardToken\":\"00007100010926\",\n   \"chargeToken\":\"00007100010926\",\n   \"otp\":\"12345678\",\n   \"merchantId\":\"23489182303312\",\n   \"terminalId\":\"489182303312\",\n   \"journeyId\":\"861023713017210\",\n   \"subMerchantId\":\"310928924949487\",\n   \"amount\":{\n      \"value\":\"12345678.00\",\n      \"currency\":\"IDR\"\n   },\n   \"urlParam\":[\n      {\n         \"url\":\"https://test1.bi.go.id/v1/test\",\n         \"type\":\"PAY_RETURN\",\n         \"isDeeplink\":\"Y\"\n      },\n      {\n         \"url\":\"https://test2.bi.go.id/v1/test\",\n         \"type\":\"PAY_RETURN\",\n         \"isDeeplink\":\"Y\"\n      }\n   ],\n   \"externalStoreId\":\"239840198240795109\",\n   \"validUpTo\":\"2020-12-23T07:44:11+07:00\",\n   \"pointOfInitiation\":\"Mobile App\",\n   \"feeType\":\"SHA|1000\",\n   \"disabledPayMethods\":\"CREDIT_CARD\",\n   \"payOptionDetails\":[\n      {\n         \"payMethod\":\"CREDIT_CARD\",\n         \"payOption\":\"CREDIT_CARD_VISA\",\n         \"transAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"feeAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"cardToken\":\"d89ca90ua90sd80as9809\",\n         \"merchantToken\":\"a90ua90sd80d89cas9809\",\n         \"additionalInfo\":{\n            \"deviceId\":\"12345679237\",\n            \"channel\":\"mobilephone\"\n         }\n      },\n      {\n         \"payMethod\":\"CREDIT_CARD\",\n         \"payOption\":\"CREDIT_CARD_MASTER\",\n         \"transAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"feeAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"cardToken\":\"d89ca90ua90sd80as9809\",\n         \"merchantToken\":\"a90ua90sd80d89cas9809\",\n         \"additionalInfo\":{\n            \"deviceId\":\"12345679237\",\n            \"channel\":\"mobilephone\"\n         }\n      }\n   ],\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+							},
+							"response": [
+								{
+									"id": "8209c21e-c64a-48f5-b915-5b3fe043f3a8",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-SECRET",
+												"value": "{{client_secret}}"
+											},
+											{
+												"key": "HttpMethod",
+												"value": "GET"
+											},
+											{
+												"key": "EndpoinUrl",
+												"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+											},
+											{
+												"key": "AccessToken",
+												"value": "{{accessTokenB2b}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:03:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "104"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"6icbF32nGw1VD9aO+VAjfSE9czglE7Z6Z9UId4lgHgjjab6+y+6tey+XmNC1zcrociJykcWad/stwNHJUGQlfg==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "4. /payment-host-to-host",
+							"id": "f4fdf831-7db0-4eec-8db8-5b6f9d21900c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessTokenB2b}}"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForPaymentHostToHost}}"
+									},
+									{
+										"key": "X-PARTNER-ID",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-EXTERNAL-ID",
+										"value": "41807553358950093184162180797837"
+									},
+									{
+										"key": "CHANNEL-ID",
+										"value": "95221"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"partnerReferenceNo\":\"2020102900000000000001\",\n   \"bankCardToken\":\"00007100010926\",\n   \"chargeToken\":\"00007100010926\",\n   \"otp\":\"12345678\",\n   \"merchantId\":\"23489182303312\",\n   \"terminalId\":\"489182303312\",\n   \"journeyId\":\"861023713017210\",\n   \"subMerchantId\":\"310928924949487\",\n   \"amount\":{\n      \"value\":\"12345678.00\",\n      \"currency\":\"IDR\"\n   },\n   \"urlParam\":[\n      {\n         \"url\":\"https://test1.bi.go.id/v1/test\",\n         \"type\":\"PAY_RETURN\",\n         \"isDeeplink\":\"Y\"\n      },\n      {\n         \"url\":\"https://test2.bi.go.id/v1/test\",\n         \"type\":\"PAY_RETURN\",\n         \"isDeeplink\":\"Y\"\n      }\n   ],\n   \"externalStoreId\":\"239840198240795109\",\n   \"validUpTo\":\"2020-12-23T07:44:11+07:00\",\n   \"pointOfInitiation\":\"Mobile App\",\n   \"feeType\":\"SHA|1000\",\n   \"disabledPayMethods\":\"CREDIT_CARD\",\n   \"payOptionDetails\":[\n      {\n         \"payMethod\":\"CREDIT_CARD\",\n         \"payOption\":\"CREDIT_CARD_VISA\",\n         \"transAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"feeAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"cardToken\":\"d89ca90ua90sd80as9809\",\n         \"merchantToken\":\"a90ua90sd80d89cas9809\",\n         \"additionalInfo\":{\n            \"deviceId\":\"12345679237\",\n            \"channel\":\"mobilephone\"\n         }\n      },\n      {\n         \"payMethod\":\"CREDIT_CARD\",\n         \"payOption\":\"CREDIT_CARD_MASTER\",\n         \"transAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"feeAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"cardToken\":\"d89ca90ua90sd80as9809\",\n         \"merchantToken\":\"a90ua90sd80d89cas9809\",\n         \"additionalInfo\":{\n            \"deviceId\":\"12345679237\",\n            \"channel\":\"mobilephone\"\n         }\n      }\n   ],\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/payment-host-to-host"
+							},
+							"response": [
+								{
+									"id": "62a627be-0e36-4c44-a661-799bcdba54d2",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessTokenB2b}}"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForPaymentHostToHost}}"
+											},
+											{
+												"key": "X-PARTNER-ID",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-EXTERNAL-ID",
+												"value": "41807553358950093184162180797837"
+											},
+											{
+												"key": "CHANNEL-ID",
+												"value": "95221"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n   \"partnerReferenceNo\":\"2020102900000000000001\",\n   \"bankCardToken\":\"00007100010926\",\n   \"chargeToken\":\"00007100010926\",\n   \"otp\":\"12345678\",\n   \"merchantId\":\"23489182303312\",\n   \"terminalId\":\"489182303312\",\n   \"journeyId\":\"861023713017210\",\n   \"subMerchantId\":\"310928924949487\",\n   \"amount\":{\n      \"value\":\"12345678.00\",\n      \"currency\":\"IDR\"\n   },\n   \"urlParam\":[\n      {\n         \"url\":\"https://test1.bi.go.id/v1/test\",\n         \"type\":\"PAY_RETURN\",\n         \"isDeeplink\":\"Y\"\n      },\n      {\n         \"url\":\"https://test2.bi.go.id/v1/test\",\n         \"type\":\"PAY_RETURN\",\n         \"isDeeplink\":\"Y\"\n      }\n   ],\n   \"externalStoreId\":\"239840198240795109\",\n   \"validUpTo\":\"2020-12-23T07:44:11+07:00\",\n   \"pointOfInitiation\":\"Mobile App\",\n   \"feeType\":\"SHA|1000\",\n   \"disabledPayMethods\":\"CREDIT_CARD\",\n   \"payOptionDetails\":[\n      {\n         \"payMethod\":\"CREDIT_CARD\",\n         \"payOption\":\"CREDIT_CARD_VISA\",\n         \"transAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"feeAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"cardToken\":\"d89ca90ua90sd80as9809\",\n         \"merchantToken\":\"a90ua90sd80d89cas9809\",\n         \"additionalInfo\":{\n            \"deviceId\":\"12345679237\",\n            \"channel\":\"mobilephone\"\n         }\n      },\n      {\n         \"payMethod\":\"CREDIT_CARD\",\n         \"payOption\":\"CREDIT_CARD_MASTER\",\n         \"transAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"feeAmount\":{\n            \"value\":\"12345678.00\",\n            \"currency\":\"IDR\"\n         },\n         \"cardToken\":\"d89ca90ua90sd80as9809\",\n         \"merchantToken\":\"a90ua90sd80d89cas9809\",\n         \"additionalInfo\":{\n            \"deviceId\":\"12345679237\",\n            \"channel\":\"mobilephone\"\n         }\n      }\n   ],\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/payment-host-to-host"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "374"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-21T09:40:42+07:00"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 21 May 2024 02:40:42 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2005400\",\n    \"responseMessage\": \"Successful\",\n    \"referenceNo\": \"67a748ed98df45f8aef09d5d9e69aa28\",\n    \"partnerReferenceNo\": \"2020102900000000000001\",\n    \"approvalCode\": \"6016101398\",\n    \"appRedirectUrl\": \"https://pjsp.com/app?bizNo=REF993883&...\",\n    \"webRedirectUrl\": \"https://pjsp.com/universal?bizNo=REF993883&...\",\n    \"additionalInfo\": {\n        \"deviceId\": \"12345679237\",\n        \"channel\": \"mobilephone\"\n    }\n}"
+								}
+							]
+						}
+					],
+					"id": "b477781b-2818-4e4e-b001-e279d5b51e44"
+				},
+				{
+					"name": "Direct Debit Payment Status Test",
+					"item": [
+						{
+							"name": "1. /utilities/signature-auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b968b79-c50e-49cd-bae5-f57d250c98b7",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForB2bKeyGenerate\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "4ce564fd-6c3c-4a49-9eab-a8bd8a05bdfe",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "Private_Key",
+										"value": "{{private_key}}"
+									}
+								],
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+							},
+							"response": [
+								{
+									"id": "57dad496-3074-4e49-8a8d-1febd08fc315",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "Private_Key",
+												"value": "{{private_key}}"
+											}
+										],
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "360"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:01:35 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"eyE1XcMPjmYoJpUm4q5NEhgcUiNyfEuuq5NLYCgFziahXH/zRSxiXmGnVZCljx4sg1pNgvypL0Xze0C43K6Lrj+Xhuvc51W5LFqDAczZES2CbuXaVbHl7FjRYI3OV4MSxxARUzvb+B9tWTZ51XRpO08OeU3R5lqy6j9WcQOfAnVxWTg6fo6fyKkKGFQDPIfSwZYXCvqbwIugVCr4LuhRM3igEotXzqnnx0Msnfb1EGUl9FP3bT1rhbctEHBR4E9HcLbIjFw8TbgmKkyPBXQzmpAljlQoWpKQZ+hFQI/a4Qa7jcTEkr0gvTKfcg10ZjfVh4jvbdZ12oQHU9fXlQBy2A==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "2. /access-token/b2b",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17af3d44-8fa8-49a6-9153-540b2b9ad18b",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"accessTokenB2b\", jsonData.accessToken);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "cd0a8494-74ee-4064-b1f4-fbb2fae532f8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForB2bKeyGenerate}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+							},
+							"response": [
+								{
+									"id": "4af3cf50-ebc9-4297-b860-1682797fbe87",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForB2bKeyGenerate}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:02:18+07:00"
+										},
+										{
+											"key": "X-CLIENT-KEY",
+											"value": "9a9b10eb7a8346d0916ccb63b7f98798"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:02:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "405"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2007300\",\n    \"responseMessage\": \"Successful\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkODNlODJiNS1lNjg4LTRlMDktYTJiYy0wNjZlMjVhZjQ0MmYiLCJjbGllbnRJZCI6IjlhOWIxMGViN2E4MzQ2ZDA5MTZjY2I2M2I3Zjk4Nzk4IiwibmJmIjoxNzE2MTkyMTM4LCJleHAiOjE3MTYxOTMwMzgsImlhdCI6MTcxNjE5MjEzOH0.PfXkbugRTYNRqPk8995bvOIZsDEa6FaI14isQl1fWmQ\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": \"900\",\n    \"additionalInfo\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "3. /utilities/signature-service",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4371ac8f-2800-49ed-9b25-3ac5c806bc10",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForDirectDebitStatus\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "3d34babf-806f-4ba4-b40a-01ca0382c225",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-SECRET",
+										"value": "{{client_secret}}"
+									},
+									{
+										"key": "HttpMethod",
+										"value": "POST"
+									},
+									{
+										"key": "EndpoinUrl",
+										"value": "/api/v1.0/debit/status"
+									},
+									{
+										"key": "AccessToken",
+										"value": "{{accessTokenB2b}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"originalExternalId\":\"30443786930722726463280097920912\",\n   \"serviceCode\":\"17\",\n   \"transactionDate\":\"2020-12-21T14:56:11+07:00\",\n   \"amount\":{\n      \"value\":\"12345678.00\",\n      \"currency\":\"IDR\"\n   },\n   \"merchantId\":\"23489182303312\",\n   \"subMerchantId\":\"23489182303312\",\n   \"externalStoreId\":\"183908924912387\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+							},
+							"response": [
+								{
+									"id": "354ccbda-801c-47c7-8007-0282c08d3f70",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-SECRET",
+												"value": "{{client_secret}}"
+											},
+											{
+												"key": "HttpMethod",
+												"value": "GET"
+											},
+											{
+												"key": "EndpoinUrl",
+												"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+											},
+											{
+												"key": "AccessToken",
+												"value": "{{accessTokenB2b}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:03:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "104"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"6icbF32nGw1VD9aO+VAjfSE9czglE7Z6Z9UId4lgHgjjab6+y+6tey+XmNC1zcrociJykcWad/stwNHJUGQlfg==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "4. /debit/status",
+							"id": "89b2a2f2-b13a-4d97-988b-1c62395c704c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessTokenB2b}}"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForDirectDebitStatus}}"
+									},
+									{
+										"key": "X-PARTNER-ID",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-EXTERNAL-ID",
+										"value": "41807553358950093184162180797837"
+									},
+									{
+										"key": "CHANNEL-ID",
+										"value": "95221"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"originalExternalId\":\"30443786930722726463280097920912\",\n   \"serviceCode\":\"17\",\n   \"transactionDate\":\"2020-12-21T14:56:11+07:00\",\n   \"amount\":{\n      \"value\":\"12345678.00\",\n      \"currency\":\"IDR\"\n   },\n   \"merchantId\":\"23489182303312\",\n   \"subMerchantId\":\"23489182303312\",\n   \"externalStoreId\":\"183908924912387\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/status"
+							},
+							"response": [
+								{
+									"id": "b425ba07-429c-427a-94c3-181581d325c0",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessTokenB2b}}"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForDirectDebitStatus}}"
+											},
+											{
+												"key": "X-PARTNER-ID",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-EXTERNAL-ID",
+												"value": "41807553358950093184162180797837"
+											},
+											{
+												"key": "CHANNEL-ID",
+												"value": "95221"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"originalExternalId\":\"30443786930722726463280097920912\",\n   \"serviceCode\":\"17\",\n   \"transactionDate\":\"2020-12-21T14:56:11+07:00\",\n   \"amount\":{\n      \"value\":\"12345678.00\",\n      \"currency\":\"IDR\"\n   },\n   \"merchantId\":\"23489182303312\",\n   \"subMerchantId\":\"23489182303312\",\n   \"externalStoreId\":\"183908924912387\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/status"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "905"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-21T10:39:18+07:00"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 21 May 2024 03:39:17 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2005500\",\n    \"responseMessage\": \"Successful\",\n    \"originalReferenceNo\": \"2020102977770000000009\",\n    \"originalPartnerReferenceNo\": \"2020102900000000000001\",\n    \"approvalCode\": \"1891838566\",\n    \"originalExternalId\": \"30443786930722726463280097920912\",\n    \"serviceCode\": \"17\",\n    \"latestTransactionStatus\": \"00\",\n    \"transactionStatusDesc\": \"success\",\n    \"originalResponseCode\": \"2005500\",\n    \"originalResponseMessage\": \"Successful\",\n    \"sessionId\": \"8844ae75a2c342af\",\n    \"requestID\": \"b7df38bbb1e54905\",\n    \"refundHistory\": [\n        {\n            \"refundNo\": \"f92f9d30bfdd49fa\",\n            \"partnerRefundNo\": \"3f77a596e01b41a3\",\n            \"refundAmount\": {\n                \"value\": \"12345678.00\",\n                \"currency\": \"IDR\"\n            },\n            \"refundStatus\": \"00\",\n            \"refundDate\": \"2024-04-21T10:39:18+07:00\",\n            \"reason\": \"cancle by customer\"\n        }\n    ],\n    \"transAmount\": {\n        \"value\": \"12345678.00\",\n        \"currency\": \"IDR\"\n    },\n    \"feeAmount\": {\n        \"value\": \"1000.00\",\n        \"currency\": \"IDR\"\n    },\n    \"paidTime\": \"2020-12-21T14:56:11+07:00\",\n    \"additionalInfo\": {\n        \"deviceId\": \"12345679237\",\n        \"channel\": \"mobilephone\"\n    }\n}"
+								}
+							]
+						}
+					],
+					"id": "6e877225-d7a1-43af-a898-de62502beb70"
+				},
+				{
+					"name": "Direct Debit Payment Cancel Test",
+					"item": [
+						{
+							"name": "1. /utilities/signature-auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b968b79-c50e-49cd-bae5-f57d250c98b7",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForB2bKeyGenerate\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "b717217d-de51-44a3-8ee2-d7d875dafeee",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "Private_Key",
+										"value": "{{private_key}}"
+									}
+								],
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+							},
+							"response": [
+								{
+									"id": "0112ac89-2db1-4101-87e9-85f817e541cb",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "Private_Key",
+												"value": "{{private_key}}"
+											}
+										],
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "360"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:01:35 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"eyE1XcMPjmYoJpUm4q5NEhgcUiNyfEuuq5NLYCgFziahXH/zRSxiXmGnVZCljx4sg1pNgvypL0Xze0C43K6Lrj+Xhuvc51W5LFqDAczZES2CbuXaVbHl7FjRYI3OV4MSxxARUzvb+B9tWTZ51XRpO08OeU3R5lqy6j9WcQOfAnVxWTg6fo6fyKkKGFQDPIfSwZYXCvqbwIugVCr4LuhRM3igEotXzqnnx0Msnfb1EGUl9FP3bT1rhbctEHBR4E9HcLbIjFw8TbgmKkyPBXQzmpAljlQoWpKQZ+hFQI/a4Qa7jcTEkr0gvTKfcg10ZjfVh4jvbdZ12oQHU9fXlQBy2A==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "2. /access-token/b2b",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17af3d44-8fa8-49a6-9153-540b2b9ad18b",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"accessTokenB2b\", jsonData.accessToken);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "3256eed2-2ddb-434b-8af8-e31159163c9c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForB2bKeyGenerate}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+							},
+							"response": [
+								{
+									"id": "44069ff4-6d66-4a5c-b1d0-534cc7a8279e",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForB2bKeyGenerate}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:02:18+07:00"
+										},
+										{
+											"key": "X-CLIENT-KEY",
+											"value": "9a9b10eb7a8346d0916ccb63b7f98798"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:02:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "405"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2007300\",\n    \"responseMessage\": \"Successful\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkODNlODJiNS1lNjg4LTRlMDktYTJiYy0wNjZlMjVhZjQ0MmYiLCJjbGllbnRJZCI6IjlhOWIxMGViN2E4MzQ2ZDA5MTZjY2I2M2I3Zjk4Nzk4IiwibmJmIjoxNzE2MTkyMTM4LCJleHAiOjE3MTYxOTMwMzgsImlhdCI6MTcxNjE5MjEzOH0.PfXkbugRTYNRqPk8995bvOIZsDEa6FaI14isQl1fWmQ\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": \"900\",\n    \"additionalInfo\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "3. /utilities/signature-service",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4371ac8f-2800-49ed-9b25-3ac5c806bc10",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForDirectDebitCancel\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "d2731314-9492-4334-a2bf-a6027bcacf80",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-SECRET",
+										"value": "{{client_secret}}"
+									},
+									{
+										"key": "HttpMethod",
+										"value": "POST"
+									},
+									{
+										"key": "EndpoinUrl",
+										"value": "/api/v1.0/debit/cancel"
+									},
+									{
+										"key": "AccessToken",
+										"value": "{{accessTokenB2b}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"approvalCode\":\"201039000200\",\n   \"originalExternalId\":\"30443786930722726463280097920912\",\n   \"merchantId\":\"23489182303312\",\n   \"subMerchantId\":\"23489182303312\",\n   \"reason\":\"Network timeout\",\n   \"externalStoreId\":\"124928924949487\",\n   \"amount\":{\n      \"value\":\"10000.00\",\n      \"currency\":\"IDR\"\n   },\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+							},
+							"response": [
+								{
+									"id": "75748d4d-92cd-4f0a-8fae-d261348b9694",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-SECRET",
+												"value": "{{client_secret}}"
+											},
+											{
+												"key": "HttpMethod",
+												"value": "GET"
+											},
+											{
+												"key": "EndpoinUrl",
+												"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+											},
+											{
+												"key": "AccessToken",
+												"value": "{{accessTokenB2b}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:03:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "104"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"6icbF32nGw1VD9aO+VAjfSE9czglE7Z6Z9UId4lgHgjjab6+y+6tey+XmNC1zcrociJykcWad/stwNHJUGQlfg==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "4. /debit/cancel",
+							"id": "87ec18a4-be8a-42d3-8362-01d64b273c96",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessTokenB2b}}"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForDirectDebitCancel}}"
+									},
+									{
+										"key": "X-PARTNER-ID",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-EXTERNAL-ID",
+										"value": "41807553358950093184162180797837"
+									},
+									{
+										"key": "CHANNEL-ID",
+										"value": "95221"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"approvalCode\":\"201039000200\",\n   \"originalExternalId\":\"30443786930722726463280097920912\",\n   \"merchantId\":\"23489182303312\",\n   \"subMerchantId\":\"23489182303312\",\n   \"reason\":\"Network timeout\",\n   \"externalStoreId\":\"124928924949487\",\n   \"amount\":{\n      \"value\":\"10000.00\",\n      \"currency\":\"IDR\"\n   },\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/cancel"
+							},
+							"response": [
+								{
+									"id": "900abbe3-8ce0-4670-a3a7-b3a36316430f",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessTokenB2b}}"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForDirectDebitStatus}}"
+											},
+											{
+												"key": "X-PARTNER-ID",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-EXTERNAL-ID",
+												"value": "41807553358950093184162180797837"
+											},
+											{
+												"key": "CHANNEL-ID",
+												"value": "95221"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"approvalCode\":\"201039000200\",\n   \"originalExternalId\":\"30443786930722726463280097920912\",\n   \"merchantId\":\"23489182303312\",\n   \"subMerchantId\":\"23489182303312\",\n   \"reason\":\"Network timeout\",\n   \"externalStoreId\":\"124928924949487\",\n   \"amount\":{\n      \"value\":\"10000.00\",\n      \"currency\":\"IDR\"\n   },\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/cancel"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-21T09:47:14+07:00"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 21 May 2024 02:47:13 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "369"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2005700\",\n    \"responseMessage\": \"Successful\",\n    \"originalPartnerReferenceNo\": \"2020102900000000000001\",\n    \"originalReferenceNo\": \"2020102977770000000009\",\n    \"originalExternalId\": \"30443786930722726463280097920912\",\n    \"cancelTime\": \"2024-05-21T09:47:14+07:00\",\n    \"transactionDate\": \"2024-04-21T09:47:14+07:00\",\n    \"additionalInfo\": {\n        \"deviceId\": \"12345679237\",\n        \"channel\": \"mobilephone\"\n    }\n}"
+								}
+							]
+						}
+					],
+					"id": "2e0fd3a6-6511-4ece-a195-d8347883ed8a"
+				},
+				{
+					"name": "Direct Debit Payment Refund Test",
+					"item": [
+						{
+							"name": "1. /utilities/signature-auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b968b79-c50e-49cd-bae5-f57d250c98b7",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForB2bKeyGenerate\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "8806c270-f565-40e8-bf4b-03386a0c8d84",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "Private_Key",
+										"value": "{{private_key}}"
+									}
+								],
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+							},
+							"response": [
+								{
+									"id": "8717635e-29ae-45e8-b812-cd4baa405a8d",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "Private_Key",
+												"value": "{{private_key}}"
+											}
+										],
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "360"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:01:35 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"eyE1XcMPjmYoJpUm4q5NEhgcUiNyfEuuq5NLYCgFziahXH/zRSxiXmGnVZCljx4sg1pNgvypL0Xze0C43K6Lrj+Xhuvc51W5LFqDAczZES2CbuXaVbHl7FjRYI3OV4MSxxARUzvb+B9tWTZ51XRpO08OeU3R5lqy6j9WcQOfAnVxWTg6fo6fyKkKGFQDPIfSwZYXCvqbwIugVCr4LuhRM3igEotXzqnnx0Msnfb1EGUl9FP3bT1rhbctEHBR4E9HcLbIjFw8TbgmKkyPBXQzmpAljlQoWpKQZ+hFQI/a4Qa7jcTEkr0gvTKfcg10ZjfVh4jvbdZ12oQHU9fXlQBy2A==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "2. /access-token/b2b",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17af3d44-8fa8-49a6-9153-540b2b9ad18b",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"accessTokenB2b\", jsonData.accessToken);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "bdec13cc-edf7-412a-a064-43db3c053136",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForB2bKeyGenerate}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+							},
+							"response": [
+								{
+									"id": "34c12ac3-26e2-4e97-9610-215d2b150ed6",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForB2bKeyGenerate}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:02:18+07:00"
+										},
+										{
+											"key": "X-CLIENT-KEY",
+											"value": "9a9b10eb7a8346d0916ccb63b7f98798"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:02:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "405"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2007300\",\n    \"responseMessage\": \"Successful\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkODNlODJiNS1lNjg4LTRlMDktYTJiYy0wNjZlMjVhZjQ0MmYiLCJjbGllbnRJZCI6IjlhOWIxMGViN2E4MzQ2ZDA5MTZjY2I2M2I3Zjk4Nzk4IiwibmJmIjoxNzE2MTkyMTM4LCJleHAiOjE3MTYxOTMwMzgsImlhdCI6MTcxNjE5MjEzOH0.PfXkbugRTYNRqPk8995bvOIZsDEa6FaI14isQl1fWmQ\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": \"900\",\n    \"additionalInfo\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "3. /utilities/signature-service",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4371ac8f-2800-49ed-9b25-3ac5c806bc10",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForDirectPaymentRefund\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "0f039da5-c1c9-4c73-a0d5-b361e15aa244",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-SECRET",
+										"value": "{{client_secret}}"
+									},
+									{
+										"key": "HttpMethod",
+										"value": "POST"
+									},
+									{
+										"key": "EndpoinUrl",
+										"value": "/api/v1.0/debit/refund"
+									},
+									{
+										"key": "AccessToken",
+										"value": "{{accessTokenB2b}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"merchantId\":\"00007100010926\",\n   \"subMerchantId\":\"310928924949487\",\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"originalExternalId\":\"10052019\",\n   \"partnerRefundNo\":\"239850918204981205970\",\n   \"refundAmount\":{\n      \"value\":\"10000.00\",\n      \"currency\":\"IDR\"\n   },\n   \"externalStoreId\":\"124928924949487\",\n   \"reason\":\"Customer complain\",\n   \"additionalInfo\":null\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+							},
+							"response": [
+								{
+									"id": "2c4f7a6e-cfdf-4ff2-8300-aa97333e2762",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-SECRET",
+												"value": "{{client_secret}}"
+											},
+											{
+												"key": "HttpMethod",
+												"value": "GET"
+											},
+											{
+												"key": "EndpoinUrl",
+												"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+											},
+											{
+												"key": "AccessToken",
+												"value": "{{accessTokenB2b}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:03:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "104"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"6icbF32nGw1VD9aO+VAjfSE9czglE7Z6Z9UId4lgHgjjab6+y+6tey+XmNC1zcrociJykcWad/stwNHJUGQlfg==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "4. /debit/refund",
+							"id": "08061289-c54f-481d-b142-457c86d917e6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessTokenB2b}}"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForDirectPaymentRefund}}"
+									},
+									{
+										"key": "X-PARTNER-ID",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-EXTERNAL-ID",
+										"value": "41807553358950093184162180797837"
+									},
+									{
+										"key": "CHANNEL-ID",
+										"value": "95221"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"merchantId\":\"00007100010926\",\n   \"subMerchantId\":\"310928924949487\",\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"originalExternalId\":\"10052019\",\n   \"partnerRefundNo\":\"239850918204981205970\",\n   \"refundAmount\":{\n      \"value\":\"10000.00\",\n      \"currency\":\"IDR\"\n   },\n   \"externalStoreId\":\"124928924949487\",\n   \"reason\":\"Customer complain\",\n   \"additionalInfo\":null\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/refund"
+							},
+							"response": [
+								{
+									"id": "a9d1d185-48b1-4d7f-b37f-fe06987aa4dc",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessTokenB2b}}"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForDirectPaymentRefund}}"
+											},
+											{
+												"key": "X-PARTNER-ID",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-EXTERNAL-ID",
+												"value": "41807553358950093184162180797837"
+											},
+											{
+												"key": "CHANNEL-ID",
+												"value": "95221"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n   \"merchantId\":\"00007100010926\",\n   \"subMerchantId\":\"310928924949487\",\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"originalExternalId\":\"10052019\",\n   \"partnerRefundNo\":\"239850918204981205970\",\n   \"refundAmount\":{\n      \"value\":\"10000.00\",\n      \"currency\":\"IDR\"\n   },\n   \"externalStoreId\":\"124928924949487\",\n   \"reason\":\"Customer complain\",\n   \"additionalInfo\":null\n}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/refund"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-21T09:52:40+07:00"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 21 May 2024 02:52:40 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "400"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2005800\",\n    \"responseMessage\": \"Successful\",\n    \"originalPartnerReferenceNo\": \"2020102900000000000001\",\n    \"originalReferenceNo\": \"2020102977770000000009\",\n    \"originalExternalId\": \"10052019\",\n    \"partnerTrxId\": \"5c227ad7d0804baf\",\n    \"refundNo\": \"8352fda6dbf24d24ad4fc29e0f6e45d1\",\n    \"partnerRefundNo\": \"124928924949487\",\n    \"refundAmount\": {\n        \"value\": \"10000.00\",\n        \"currency\": \"IDR\"\n    },\n    \"refundTime\": \"2024-05-21T09:52:40+07:00\"\n}"
+								}
+							]
+						}
+					],
+					"id": "713b04cd-561e-452d-912c-64765cc00203"
+				},
+				{
+					"name": "Direct Debit Payment Notify Test",
+					"item": [
+						{
+							"name": "1. /utilities/signature-auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b968b79-c50e-49cd-bae5-f57d250c98b7",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForB2bKeyGenerate\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "bf07f697-3827-41e8-a4cc-6efeff75bd2e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "Private_Key",
+										"value": "{{private_key}}"
+									}
+								],
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+							},
+							"response": [
+								{
+									"id": "8c55111f-36a1-4477-8fca-b098a3103f36",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "Private_Key",
+												"value": "{{private_key}}"
+											}
+										],
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-auth"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Length",
+											"value": "360"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:01:35 GMT"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"eyE1XcMPjmYoJpUm4q5NEhgcUiNyfEuuq5NLYCgFziahXH/zRSxiXmGnVZCljx4sg1pNgvypL0Xze0C43K6Lrj+Xhuvc51W5LFqDAczZES2CbuXaVbHl7FjRYI3OV4MSxxARUzvb+B9tWTZ51XRpO08OeU3R5lqy6j9WcQOfAnVxWTg6fo6fyKkKGFQDPIfSwZYXCvqbwIugVCr4LuhRM3igEotXzqnnx0Msnfb1EGUl9FP3bT1rhbctEHBR4E9HcLbIjFw8TbgmKkyPBXQzmpAljlQoWpKQZ+hFQI/a4Qa7jcTEkr0gvTKfcg10ZjfVh4jvbdZ12oQHU9fXlQBy2A==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "2. /access-token/b2b",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17af3d44-8fa8-49a6-9153-540b2b9ad18b",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"accessTokenB2b\", jsonData.accessToken);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "ed1c6cea-110d-46fa-96e3-01e2ba1886a7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-KEY",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForB2bKeyGenerate}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+							},
+							"response": [
+								{
+									"id": "ee55e461-901e-4473-b2ad-11e437383783",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-KEY",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForB2bKeyGenerate}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"grantType\":\"client_credentials\", \"additionalInfo\":{ }}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-20T15:02:18+07:00"
+										},
+										{
+											"key": "X-CLIENT-KEY",
+											"value": "9a9b10eb7a8346d0916ccb63b7f98798"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:02:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "405"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2007300\",\n    \"responseMessage\": \"Successful\",\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkODNlODJiNS1lNjg4LTRlMDktYTJiYy0wNjZlMjVhZjQ0MmYiLCJjbGllbnRJZCI6IjlhOWIxMGViN2E4MzQ2ZDA5MTZjY2I2M2I3Zjk4Nzk4IiwibmJmIjoxNzE2MTkyMTM4LCJleHAiOjE3MTYxOTMwMzgsImlhdCI6MTcxNjE5MjEzOH0.PfXkbugRTYNRqPk8995bvOIZsDEa6FaI14isQl1fWmQ\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": \"900\",\n    \"additionalInfo\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "3. /utilities/signature-service",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4371ac8f-2800-49ed-9b25-3ac5c806bc10",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"signatureForDirectPaymentNotify\", jsonData.signature);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "1986ab7b-a962-4b18-9d98-9185d75959fa",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-CLIENT-SECRET",
+										"value": "{{client_secret}}"
+									},
+									{
+										"key": "HttpMethod",
+										"value": "POST"
+									},
+									{
+										"key": "EndpoinUrl",
+										"value": "/api/v1.0/debit/notify"
+									},
+									{
+										"key": "AccessToken",
+										"value": "{{accessTokenB2b}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"originalExternalId\":\"30443786930722726463280097920912\",\n   \"merchantId\":\"23489182303312\",\n   \"subMerchantId\":\"23489182303312\",\n   \"amount\":{\n      \"value\":\"10000.00\",\n      \"currency\":\"IDR\"\n   },\n   \"latestTransactionStatus\":\"00\",\n   \"transactionStatusDesc\":\"success\",\n   \"createdTime\":\"2020-12-21T17:07:18+07:00\",\n   \"finishedTime\":\"2020-12-21T17:07:20+07:00\",\n   \"externalStoreId\":\"91863213913112\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+							},
+							"response": [
+								{
+									"id": "50c777eb-6717-4e37-a20e-3adf26dbd7e2",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-CLIENT-SECRET",
+												"value": "{{client_secret}}"
+											},
+											{
+												"key": "HttpMethod",
+												"value": "GET"
+											},
+											{
+												"key": "EndpoinUrl",
+												"value": "/api/v1.0/get-auth-code?redirectUrl=https%3A%2F%2Fdomain.com%2FauthSuccess.json&scopes=QUERY_BALANCE%2CQUERY_PROFILE&state=WOdkkwijSDs"
+											},
+											{
+												"key": "AccessToken",
+												"value": "{{accessTokenB2b}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/utilities/signature-service"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 20 May 2024 08:03:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "104"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"signature\": \"6icbF32nGw1VD9aO+VAjfSE9czglE7Z6Z9UId4lgHgjjab6+y+6tey+XmNC1zcrociJykcWad/stwNHJUGQlfg==\"\n}"
+								}
+							]
+						},
+						{
+							"name": "4. /debit/notify",
+							"id": "12a9b268-4320-48b7-9f83-1105a174a951",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessTokenB2b}}"
+									},
+									{
+										"key": "X-TIMESTAMP",
+										"value": "2020-01-01T00:00:00+07:00"
+									},
+									{
+										"key": "X-SIGNATURE",
+										"value": "{{signatureForDirectPaymentNotify}}"
+									},
+									{
+										"key": "X-PARTNER-ID",
+										"value": "{{client_id}}"
+									},
+									{
+										"key": "X-EXTERNAL-ID",
+										"value": "41807553358950093184162180797837"
+									},
+									{
+										"key": "CHANNEL-ID",
+										"value": "95221"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"originalExternalId\":\"30443786930722726463280097920912\",\n   \"merchantId\":\"23489182303312\",\n   \"subMerchantId\":\"23489182303312\",\n   \"amount\":{\n      \"value\":\"10000.00\",\n      \"currency\":\"IDR\"\n   },\n   \"latestTransactionStatus\":\"00\",\n   \"transactionStatusDesc\":\"success\",\n   \"createdTime\":\"2020-12-21T17:07:18+07:00\",\n   \"finishedTime\":\"2020-12-21T17:07:20+07:00\",\n   \"externalStoreId\":\"91863213913112\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+								},
+								"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/notify"
+							},
+							"response": [
+								{
+									"id": "f6395780-d7b4-4663-af28-c50dfabcc0bb",
+									"name": "example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessTokenB2b}}"
+											},
+											{
+												"key": "X-TIMESTAMP",
+												"value": "2020-01-01T00:00:00+07:00"
+											},
+											{
+												"key": "X-SIGNATURE",
+												"value": "{{signatureForDirectPaymentNotify}}"
+											},
+											{
+												"key": "X-PARTNER-ID",
+												"value": "{{client_id}}"
+											},
+											{
+												"key": "X-EXTERNAL-ID",
+												"value": "41807553358950093184162180797837"
+											},
+											{
+												"key": "CHANNEL-ID",
+												"value": "95221"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n   \"originalPartnerReferenceNo\":\"2020102900000000000001\",\n   \"originalReferenceNo\":\"2020102977770000000009\",\n   \"originalExternalId\":\"30443786930722726463280097920912\",\n   \"merchantId\":\"23489182303312\",\n   \"subMerchantId\":\"23489182303312\",\n   \"amount\":{\n      \"value\":\"10000.00\",\n      \"currency\":\"IDR\"\n   },\n   \"latestTransactionStatus\":\"00\",\n   \"transactionStatusDesc\":\"success\",\n   \"createdTime\":\"2020-12-21T17:07:18+07:00\",\n   \"finishedTime\":\"2020-12-21T17:07:20+07:00\",\n   \"externalStoreId\":\"91863213913112\",\n   \"additionalInfo\":{\n      \"deviceId\":\"12345679237\",\n      \"channel\":\"mobilephone\"\n   }\n}"
+										},
+										"url": "https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/debit/notify"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=2592000"
+										},
+										{
+											"key": "X-TIMESTAMP",
+											"value": "2024-05-21T10:27:52+07:00"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 21 May 2024 03:27:52 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "91"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"responseCode\": \"2005600\",\n    \"approvalCode\": \"760861a6dcfb49b4\",\n    \"responseMessage\": \"Successful\"\n}"
+								}
+							]
+						}
+					],
+					"id": "28eb52e7-587c-43cd-ba49-cb28967bb60c"
+				}
+			],
+			"id": "f4f35867-99ab-44fb-9769-7affb6f30bb8"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3b4697b5-ffd2-4a39-8659-999dbb0db4d5",
+				"type": "text/javascript",
+				"exec": [
+					"// if (pm.request.url.toString() == 'https://joolfe.github.io/postman-util-lib/dist/bundle.js') {",
+					"//     return;",
+					"// }",
+					"",
+					"// eval(pm.collectionVariables.get('pmlib_code'))",
+					"// const moment = require(\"moment\")",
+					"",
+					"// const requestName = pm.info.requestName",
+					"// const prefixLog = `ApiRequest->${requestName}:: `",
+					"",
+					"// const clientId = pm.collectionVariables.get('client_id')",
+					"// const dateNowGMT7 = moment().utcOffset(7).format()",
+					"// const dateNowUtc = new Date();",
+					"",
+					"// // Fuction generate signature key for AccessToken Request",
+					"// let signatureB2bKey = (()=> {",
+					"//     let key = pmlib.rs.KEYUTIL.getKey(pm.collectionVariables.get('private_key'))",
+					"",
+					"//     let sign = new pmlib.rs.KJUR.crypto.Signature({\"alg\": \"SHA256withRSA\"})",
+					"",
+					"//     sign.init(key)",
+					"//     sign.updateString(clientId + \"|\" + dateNowGMT7)",
+					"",
+					"//     return Buffer.from(sign.sign(), 'hex').toString('base64')",
+					"// })()",
+					"",
+					"// // get data validity token in Postman environment",
+					"// const tokenExpiresIn = pm.collectionVariables.get(\"AccessTokenExpiresIn\")",
+					"// const PRE_REQUEST_PREFIX = \"SNAP BI APPLICATION TESTING -- PRE-REQUISTE:: \"",
+					"",
+					"// // Check is AccessToken valid?",
+					"// console.info(`${PRE_REQUEST_PREFIX}Verify if the AccessTokenB2B in the Postman collection variables is still valid or not?`)",
+					"// if (tokenExpiresIn && tokenExpiresIn <= dateNowUtc.toISOString()) {",
+					"//     console.info(`${PRE_REQUEST_PREFIX}AccessToken B2B is Expired/Not Valid, request new AccessTokenB2B`)",
+					"//     // AccessToken not valid request AccessToken to BI",
+					"//     pm.sendRequest({",
+					"//         url: 'https://apidevportal.aspi-indonesia.or.id:44310/api/v1.0/access-token/b2b',",
+					"//         method: 'post',",
+					"//         header: { ",
+					"//             'Content-Type': 'application/json', ",
+					"//             'X-CLIENT-KEY': clientId,",
+					"//             'X-SIGNATURE': signatureB2bKey,",
+					"//             'X-TIMESTAMP': dateNowGMT7",
+					"//         },",
+					"//         body: {",
+					"//             mode: 'raw',",
+					"//             raw: JSON.stringify({",
+					"//                 \"grantType\": \"client_credentials\"",
+					"//             })",
+					"//         },",
+					"//         sync: true",
+					"//     }, (err, res) => {",
+					"//         if (res.code != '200') {",
+					"//             throw new Error(\"Failed get access Token B2B token. Error:\", err);",
+					"//         }",
+					"//         dateNowUtc.setSeconds(dateNowUtc.getSeconds() + 600)",
+					"//         pm.collectionVariables.set(\"AccessTokenExpiresIn\", dateNowUtc.toISOString())",
+					"//         pm.collectionVariables.set(\"AccessTokenB2b\", res.json().accessToken)",
+					"//         console.log(`${PRE_REQUEST_PREFIX}New AccessTokenB2B generated ->`, res.json().accessToken)",
+					"//         prepareHeaders()",
+					"//     })",
+					"// } else {",
+					"//     console.log(`${PRE_REQUEST_PREFIX}AccessTokenB2B is still valid, no need to request new AccessTokenB2B`)",
+					"//     prepareHeaders()",
+					"// }",
+					"",
+					"// function prepareHeaders(){",
+					"//     pm.request.removeHeader('Authorization')",
+					"//     pm.request.removeHeader('X-TIMESTAMP')",
+					"",
+					"//     console.log(`${prefixLog}Pre-request: 1. Add AccessTokenB2B to Authorization Header as Bearer token`)",
+					"//     pm.request.addHeader({",
+					"//         key: 'Authorization',",
+					"//         value: 'Bearer ' + pm.collectionVariables.get('AccessTokenB2b')",
+					"//     })",
+					"",
+					"//     console.log(`${prefixLog}Pre-request: 2. Add header X-TIMESMAP for API request ${requestName}`)",
+					"//     pm.request.addHeader({",
+					"//         key: 'X-TIMESTAMP',",
+					"//         value: dateNowGMT7",
+					"//     })",
+					"// }"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "706008f5-673c-4ee3-8975-7cd1c9756bde",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "signatureForB2bKeyGenerate",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "accessTokenB2b",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForApiTransaction",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForGetAuthCode",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForegistration-account-creation",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForRegistration-account-unbinding",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForPaymentHostToHost",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForDirectDebitStatus",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForDirectPaymentRefund",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForDirectDebitCancel",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForDirectPaymentNotify",
+			"value": "This value will be generate automatically by this collection"
+		},
+		{
+			"key": "signatureForRegistrationAccountInquiry",
+			"value": "This value will be generate automatically by this collection"
+		}
+	]
+}
